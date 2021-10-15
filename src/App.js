@@ -4,7 +4,8 @@ import {useState} from "react"
 
 function App() {
     const [products, setProducts] = useState([]);
-    commerce.products.list().then(result=> {
+    commerce.products.list().then(result => {
+        console.log(commerce.products.list());
         console.log("Retrieved the results");
         setProducts(result.data);
     });
@@ -18,6 +19,8 @@ function App() {
            <main>
                {
                    products.map((product) => {
+                       //return <p key={product.id}>{product.name}</p>
+                       // Above should get rid of key error. It didn't work for me.
                        return <p>{product.name}</p>
                    })
                }
