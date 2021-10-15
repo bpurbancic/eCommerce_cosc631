@@ -85,13 +85,15 @@
             "toothbrush_1.jpg",
             "toothbrush_2.jpg"
         ]
-    }
+    },
     {
-        "name": "Quadrilla Marble Run - The Cyclone",
+        "name": "Quadrilla Marble Run",
         "price": 109.99,
-        "description": "<h3>Award-Winning Hape Quadrilla Wooden Marble Run - The Cyclone": [
-            "quadrilla_1.jpg",
-            "quadrilla_2.jpg"
+        "description": "<div><h1>About this item</h1><ul><li>The possibilities are limitless with the Award-Winning Quadrilla Marble Run - The Cyclone</li><li>Provides Quality Time Together - The Whole Family Playing Together is The Best Gift</li><li>Batteries not included -- because they aren't needed!!!</li></ul></div>",
+        "pictures": [
+            "quadrilla_1.png",
+            "quadrilla_2.png",
+            "quadrilla_3.png"
         ]
     }
  ]
