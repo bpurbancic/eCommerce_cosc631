@@ -1,18 +1,28 @@
-import Commerce from "@chec/commerce.js"
-//import {commerce} from "./lib/commerce"
+import {commerce} from "./lib/commerce.js"
 // Above line is from 10/6 zoom recording but I can't get it to work, with c or C.
+import {useState} from "react"
 
 function App() {
-    const commerce = new Commerce(process.env.REACT_APP_CHEC_PUBLIC_KEY,true);
-    commerce.products.list().then(response=>console.log(response.data));
+    const [products, setProducts] = useState([]);
+    commerce.products.list().then(result=> {
+        console.log("Retrieved the results");
+        setProducts(result.data);
+    });
     
     return(
         <div>
-            <h2>
-                We R Toys
-            </h2>
-           
-        </div>
+            <header>
+            <h1>We R Toys</h1>
+            <h2>Products</h2>
+           </header>
+           <main>
+               {
+                   products.map((product) => {
+                       return <p>{product.name}</p>
+                   })
+               }
+           </main>
+        </div>  
     )
 }
 
