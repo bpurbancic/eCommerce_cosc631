@@ -1,6 +1,7 @@
 import {commerce} from "./lib/commerce.js"
 // Above line is from 10/6 zoom recording but I can't get it to work, with c or C.
 import {useEffect, useState} from "react"
+//import {useParams} from "react-router"
 
 function App() {
     
@@ -13,15 +14,15 @@ function App() {
     }, []);  // the empty array [] is 2nd argument to useEffect()
             // It tells React to only re-execute when it detects a change
 
-    //const { productId } = useParams();
-    //const [product, setProduct] = useState([undefined]);
-    //useEffect(() => {
-    //    commerce.products.retrieve(productId).then(result => {
-    //        console.log(result);
-    //        setProduct(result);
-    //    });
-    //}, [productId]);
-    
+    const { productId } = useParams();
+    const [product, setProduct] = useState([undefined]);
+    useEffect(() => {
+        commerce.products.retrieve(productId).then(result => {
+            console.log(result);
+            setProduct(result);
+        });
+    }, [productId]);
+           
   
     return(
         <div>
