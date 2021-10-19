@@ -7,7 +7,7 @@ function App() {
 
     return(
         <Grid container direction='column'>
-            <Grid item>
+            <Grid item align='center'>
                 <h1>We R Toys</h1>
             </Grid>
             <Grid item container>
