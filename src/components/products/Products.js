@@ -1,5 +1,6 @@
 import {commerce} from "../../lib/commerce.js";
 import {useEffect, useState} from "react";
+import { Grid } from "@material-ui/core";
 
 function Products () {
 
@@ -13,18 +14,18 @@ function Products () {
         // It tells React to only re-execute when it detects a change
 
 return  (
-    <div>
+    <Grid container direction='column'>
         { products.length === 0 && <h2>Loading...</h2> }
-        <main> {
-        products.map((product) => { 
-        return (
-            <a href={"/product/productId=" + product.id}><img src={product.image.url} alt={product.name} width="750" /></a> 
-        )
+        <Grid item container xs={12} sm={6} md={4} lg={3}> {
+            products.map((product) => { 
+            return (
+                <a href={"/product/productId=" + product.id}><img src={product.image.url} alt={product.name} width="750" /></a> 
+            )
         } )
     }
-        </main>
+        </Grid>
     
-    </div>
+    </Grid>
 );
 }
 export default Products;
