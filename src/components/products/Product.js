@@ -18,7 +18,7 @@ const { productId } = useParams();
         <main>
             <img src= {product.image.url} alt={product.name}/>
             <br></br>
-            <h4>{product.name}</h4>
+                <h4>{product.name}</h4>
             <div dangerouslySetInnerHTML={{ __html: product.description }}></div>
         </main>
     </div>

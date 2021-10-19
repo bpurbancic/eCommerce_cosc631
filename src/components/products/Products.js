@@ -18,7 +18,7 @@ return  (
         <main> {
         products.map((product) => { 
         return (
-            <a href={"/product/productId=" + product.id}><img src={product.image.url} alt={product.name}/></a> 
+            <a href={"/product/productId=" + product.id}><img src={product.image.url} alt={product.name} width="750" /></a> 
         )
         } )
     }
