@@ -13,11 +13,6 @@ function App() {
         <div>
             <header>
             <h1>We R Toys</h1>
-            /* Button line can probably be removed */
-            
-            <Button fullWidth={false} variant='contained' color='primary'
-                href='https://mgoblog.com/'>What is this doing here?</Button>
-        
            </header>
            <main>
                <BrowserRouter>
