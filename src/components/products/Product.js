@@ -13,13 +13,14 @@ const { productId } = useParams();
      });
  }, [productId]);
  
-               return product.length === 0 ? <h2>Loading...</h2> : (
+    return product.length === 0 ? <h2>Loading...</h2> : (
     <Grid container>
         <Grid item xs={12} md={6}>
             <img src= {product.image.url} alt={product.name}/>
         </Grid>
         <Grid item xs={12} md={6}>
             <h4>{product.name}</h4>
+            
             <div dangerouslySetInnerHTML={{ __html: product.description }}></div>
         </Grid>
     </Grid>
