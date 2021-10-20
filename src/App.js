@@ -10,7 +10,7 @@ function App() {
             <Grid item>
                 <h1>We R Toys</h1>
             </Grid>
-            <Grid item container>
+            <Grid container spacing={2}>
                 <Grid item xs={false} sm={1} md={2}></Grid>
                 <Grid item xs={12} sm={10} md={8}>
                 <BrowserRouter>
