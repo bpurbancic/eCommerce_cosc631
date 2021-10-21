@@ -18,10 +18,11 @@ const { productId } = useParams();
     return product.length === 0 ? <h2>Loading...</h2> : (
     <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
-            <ImageGallery items={product.assets.map((asset) => {
+            {console.log(product.assets)}
+            <ImageGallery showPlayButton={false} items={product.assets.map((asset) => {
                 return {original:asset.url}
             })
-        }/>;
+        }/>
         
         </Grid>
         <Grid item xs={12} md={6}>
