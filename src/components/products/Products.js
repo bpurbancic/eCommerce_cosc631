@@ -21,18 +21,15 @@ function Products () {
         // It tells React to only re-execute when it detects a change
 
     return  (
-        <Grid container spacing={2}>
+        <div>
             { products.length === 0 && <h2>Loading...</h2> }
-            <Grid item container xs={12} sm={6} md={4} lg={3}> {
+            <Grid container> {
                 products.map((product) => { 
                     return (
-                        <Grid item key={product.id} >
+                        <Grid item key={product.id} xs={12} sm={8} md={6}>
                          <Card variant="outlined">
                                 <CardActionArea href={"/product/productId=" + product.id}> 
-                                    
-                                    <CardMedia style={{height:400, width:800}} image ={product.image.url} alt={product.name}/>
-
-        
+                                    <CardMedia style={{height:250}} image ={product.image.url} alt={product.name}/>
                                 </CardActionArea>
                             </Card>   
                          {/* <a href={"/product/productId=" + product.id}><img src={product.image.url} alt={product.name} width="750" /></a>  */}
@@ -42,7 +39,7 @@ function Products () {
             }
             </Grid>
     
-        </Grid>
+        </div>
     );
 }
 export default Products;

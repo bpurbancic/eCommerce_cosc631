@@ -27,7 +27,7 @@ const { productId } = useParams();
         </Grid>
         <Grid item xs={12} md={6}>
             <h4>{product.name}</h4>
-            
+            <h4>{product.price.formatted_with_symbol}</h4>
             <div dangerouslySetInnerHTML={{ __html: product.description }}></div>
         </Grid>
     </Grid>
