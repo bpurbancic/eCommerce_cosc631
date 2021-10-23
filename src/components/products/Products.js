@@ -1,7 +1,7 @@
 import {commerce} from "../../lib/commerce.js";
 import {useEffect, useState} from "react";
 import { Card, CardActionArea, CardMedia, Grid } from "@material-ui/core";
-import { makeStyles} from '@material-ui/core/styles';
+// import { makeStyles} from '@material-ui/core/styles';
 
 // const useStyles = makeStyles({
 //     media: {

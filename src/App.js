@@ -1,9 +1,8 @@
 import Product from "./components/products/Product.js"
 import Products from "./components/products/Products.js"
+import Navbar from "./components/Navbar.js"
 import {BrowserRouter, Route} from "react-router-dom"
-import { Grid, AppBar, Button, Toolbar, Typography, IconButton } from "@material-ui/core";
-// import { Storefront } from "@material-ui/icons";
-import ToysIcon from '@material-ui/icons/Toys';
+import { Grid } from "@material-ui/core";
 import { useState, useEffect } from "react";
 import { commerce } from "./lib/commerce";
 
@@ -16,20 +15,24 @@ function App() {
         commerce.cart.retrieve().then(
             (response) => {
                 console.log(response);
+                setCart(response);
             }
         );
     }, []);
 
+    const handleAddToCart = (productId, quantity) => {
+        commerce.cart.add(productId, quantity).then(
+            (response) => {
+            console.log(response);
+            setCart(response.cart);
+            }
+        );
+    }
+
     return(
         <Grid container direction='column' spacing={8}>
             <Grid item>
-                <AppBar position="static">
-                    <Toolbar>
-                        <IconButton href="/products"><ToysIcon /></IconButton>
-                        <Typography>Products</Typography>
-                    
-                    </Toolbar>
-                </AppBar>
+                <header><Navbar/></header>
             </Grid>
             <Grid item container spacing={6}>
                 <Grid item xs={false} sm={1} md={2}></Grid>  {/* Left-hand gutter */}
@@ -41,7 +44,7 @@ function App() {
                     </Route>
                     <Route path="/Product/:productId" component={Product}>
                         {/* <h3>Product</h3> */}
-                        <Product></Product>
+                        <Product handleAddToCart={handleAddToCart}></Product>
                     </Route>
                 </BrowserRouter>
                 </Grid>
