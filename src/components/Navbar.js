@@ -8,7 +8,7 @@ function Navbar({cartItems}) {
             <Toolbar>
                 <IconButton href="/products"><ToysIcon /></IconButton>
                 <Typography>We R Toys</Typography>
-                <IconButton>
+                <IconButton href="/Cart">
                     <Badge badgeContent={cartItems} color="secondary">
                     <AddShoppingCartIcon />
                     </Badge>

@@ -1,6 +1,7 @@
 import Product from "./components/products/Product.js"
 import Products from "./components/products/Products.js"
 import Navbar from "./components/Navbar.js"
+import Cart from "./components/Cart.js"
 import {BrowserRouter, Route} from "react-router-dom"
 import { Grid } from "@material-ui/core";
 import { useState, useEffect } from "react";
@@ -38,13 +39,16 @@ function App() {
                 <Grid item xs={false} sm={1} md={2}></Grid>  {/* Left-hand gutter */}
                 <Grid item xs={12} sm={10} md={8}>
                 <BrowserRouter>
-                    <Route path="/Products">
+                    <Route exact path="/Products">
                         {/* <h2>Products</h2> */}
                         <Products></Products>
                     </Route>
-                    <Route path="/Product/:productId" component={Product}>
+                    <Route exact path="/Product/:productId" component={Product}>
                         {/* <h3>Product</h3> */}
                         <Product handleAddToCart={handleAddToCart}></Product>
+                    </Route>
+                    <Route exact path = "/Cart">
+                        <Cart cart={cart} />
                     </Route>
                 </BrowserRouter>
                 </Grid>
