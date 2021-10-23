@@ -4,8 +4,21 @@ import {BrowserRouter, Route} from "react-router-dom"
 import { Grid, AppBar, Button, Toolbar, Typography, IconButton } from "@material-ui/core";
 // import { Storefront } from "@material-ui/icons";
 import ToysIcon from '@material-ui/icons/Toys';
+import { useState, useEffect } from "react";
+import { commerce } from "./lib/commerce";
+
+
 
 function App() {
+
+    const [cart, setCart] = useState({});
+    useEffect(() => {
+        commerce.cart.retrieve().then(
+            (response) => {
+                console.log(response);
+            }
+        );
+    }, []);
 
     return(
         <Grid container direction='column' spacing={8}>
@@ -28,7 +41,6 @@ function App() {
                     </Route>
                     <Route path="/Product/:productId" component={Product}>
                         {/* <h3>Product</h3> */}
-                        {/* Hey */}
                         <Product></Product>
                     </Route>
                 </BrowserRouter>
