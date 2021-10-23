@@ -1,5 +1,6 @@
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import { Grid } from "@material-ui/core";
+import CartItem from "./CartItem.js"
 
 function Cart({cart}) {
     if (!cart || !cart.line_items ) {
@@ -14,11 +15,8 @@ function Cart({cart}) {
                 cart.line_items.map(
                     (cartItem) => {
                         return (
-                            <Grid item key={cartItem.id}>
-                                {cartItem.name}
-                                {"  "}
-                                {cartItem.price.formatted_with_symbol}
-                            </Grid>
+                            <CartItem key={cartItem.id} cartItem={cartItem}/>
+                            
                         );
 
                     }

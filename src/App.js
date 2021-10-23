@@ -1,7 +1,7 @@
 import Product from "./components/products/Product.js"
 import Products from "./components/products/Products.js"
 import Navbar from "./components/Navbar.js"
-import Cart from "./components/Cart.js"
+import Cart from "./components/cart/Cart.js"
 import {BrowserRouter, Route} from "react-router-dom"
 import { Grid } from "@material-ui/core";
 import { useState, useEffect } from "react";
