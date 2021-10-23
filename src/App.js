@@ -32,7 +32,7 @@ function App() {
     return(
         <Grid container direction='column' spacing={8}>
             <Grid item>
-                <header><Navbar/></header>
+                <header><Navbar cartItems={cart.total_items}/></header>
             </Grid>
             <Grid item container spacing={6}>
                 <Grid item xs={false} sm={1} md={2}></Grid>  {/* Left-hand gutter */}
