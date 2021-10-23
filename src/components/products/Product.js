@@ -15,7 +15,7 @@ const { productId } = useParams();
      });
  }, [productId]);
  
-    return product.length === 0 ? <h2>Loading...</h2> : (
+    return product.length === 0 ? <h4>Loading...</h4> : (
     <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
             

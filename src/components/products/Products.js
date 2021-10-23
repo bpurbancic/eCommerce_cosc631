@@ -22,7 +22,7 @@ function Products () {
 
     return  (
         <div>
-            { products.length === 0 && <h2>Loading...</h2> }
+            { products.length === 0 && <h4>Loading...</h4> }
             <Grid container> {
                 products.map((product) => { 
                     return (
