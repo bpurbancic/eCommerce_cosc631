@@ -24,8 +24,28 @@ function App() {
     const handleAddToCart = (productId, quantity) => {
         commerce.cart.add(productId, quantity).then(
             (response) => {
-            console.log(response);
-            setCart(response.cart);
+                console.log(response);
+                setCart(response.cart);
+            }
+        );
+    }
+
+    const handleUpdateCart = (lineItemId, quantity) => {
+        console.log("update cart: " + quantity);
+        commerce.cart.update(lineItemId, quantity).then(
+            (response) => {
+                console.log(response);
+                setCart(response.cart);
+            }
+        );
+    }
+
+    const handleEmptyCart = () => {
+       
+        commerce.cart.empty().then(
+            (response) => {
+                console.log(response);
+                setCart(response.cart);
             }
         );
     }
@@ -48,7 +68,8 @@ function App() {
                         <Product handleAddToCart={handleAddToCart}></Product>
                     </Route>
                     <Route exact path = "/Cart">
-                        <Cart cart={cart} />
+                        <Cart cart={cart} handleUpdateCart={handleUpdateCart} 
+                        handleEmptyCart={handleEmptyCart}/>
                     </Route>
                 </BrowserRouter>
                 </Grid>

@@ -6,14 +6,14 @@ import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/css/image-gallery.css";
 
 function Product ({handleAddToCart}) {
-const { productId } = useParams();
- const [product, setProduct] = useState([]);
- useEffect(() => {
-     commerce.products.retrieve(productId).then(result => {
-         console.log(result);
-         setProduct(result);
-     });
- }, [productId]);
+    const { productId } = useParams();
+    const [product, setProduct] = useState([]);
+    useEffect(() => {
+        commerce.products.retrieve(productId).then(result => {
+            console.log(result);
+            setProduct(result);
+        });
+    }, [productId]);
  
     return product.length === 0 ? <h4>Loading...</h4> : (
     <Grid container spacing={2}>
@@ -34,7 +34,7 @@ const { productId } = useParams();
                 () => {
                     handleAddToCart(product.id, 1);
                 }
-            } color='primary' size='large' variant='outlined'>**** Add to cart ****</Button>
+            } color='primary' size='large' variant='outlined'>** Add to cart **</Button>
             <div dangerouslySetInnerHTML={{ __html: product.description }}></div>
         </Grid>
     </Grid>
