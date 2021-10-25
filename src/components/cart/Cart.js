@@ -2,7 +2,7 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import { Button, Grid } from "@material-ui/core";
 import CartItem from "./CartItem.js"
 
-function Cart({cart}) {
+function Cart({cart, handleUpdateCart}) {
     if (!cart || !cart.line_items ) {
         return <h5><AddShoppingCartIcon/>Loading...</h5>
     }
@@ -15,7 +15,7 @@ function Cart({cart}) {
                 cart.line_items.map(
                     (cartItem) => {
                         return (
-                            <CartItem key={cartItem.id} cartItem={cartItem}/>
+                            <CartItem key={cartItem.id} cartItem={cartItem} handleUpdateCart={handleUpdateCart}/>
                             
                         );
 

@@ -1,6 +1,7 @@
 import { Button, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
+
 const useStyles = makeStyles({
     image: {
         width: 128,
@@ -18,7 +19,7 @@ const useStyles = makeStyles({
     },
 });
 
-function CartItem ({cartItem}) {
+function CartItem ({cartItem, handleUpdateCart}) {
     const classes = useStyles();
     return (
         <Grid item container spacing={2}>
@@ -38,18 +39,21 @@ function CartItem ({cartItem}) {
                 <Grid>
                     <Button onClick={
                         () => {
-                        // handleUpdate(product.id, -1);
+                            handleUpdateCart(cartItem.id, {quantity: cartItem.quantity-1});
+                            // handleUpdateCart(cartItem.id, cartItem.quantity-1);
+                            // console.log(cartItem.id);
+                            // console.log(cartItem.quantity);
                         }
                     } color='primary' size='small' > - </Button>
                     {cartItem.quantity}
                     <Button onClick={
                         () => {
-                        // handleUpdate(product.id, 1);
+                            handleUpdateCart(cartItem.id, {quantity: cartItem.quantity+1});
                         }
                     } color='primary' size='small' > + </Button>
                     <Button onClick={
                         () => {
-                        // handleRemove(product.id);
+                            handleUpdateCart(cartItem.id, {quantity: 0});
                         }
                     } color='primary' size='small' > REMOVE </Button>
                 </Grid>
