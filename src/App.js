@@ -40,6 +40,16 @@ function App() {
         );
     }
 
+    const handleEmptyCart = () => {
+       
+        commerce.cart.empty().then(
+            (response) => {
+                console.log(response);
+                setCart(response.cart);
+            }
+        );
+    }
+
     return(
         <Grid container direction='column' spacing={8}>
             <Grid item>
@@ -58,7 +68,8 @@ function App() {
                         <Product handleAddToCart={handleAddToCart}></Product>
                     </Route>
                     <Route exact path = "/Cart">
-                        <Cart cart={cart} handleUpdateCart={handleUpdateCart} />
+                        <Cart cart={cart} handleUpdateCart={handleUpdateCart} 
+                        handleEmptyCart={handleEmptyCart}/>
                     </Route>
                 </BrowserRouter>
                 </Grid>

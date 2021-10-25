@@ -2,7 +2,7 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import { Button, Grid } from "@material-ui/core";
 import CartItem from "./CartItem.js"
 
-function Cart({cart, handleUpdateCart}) {
+function Cart({cart, handleUpdateCart, handleEmptyCart}) {
     if (!cart || !cart.line_items ) {
         return <h5><AddShoppingCartIcon/>Loading...</h5>
     }
@@ -25,7 +25,7 @@ function Cart({cart, handleUpdateCart}) {
             <Grid item>
                 <Button onClick={
                     () => {
-                        // handleEmptyCart();
+                        handleEmptyCart();
                         }
                     } color='primary' size='small' > EMPTY CART </Button>
             </Grid>
