@@ -1,3 +1,4 @@
+import Home from "./components/home/Home.js"
 import Product from "./components/products/Product.js"
 import Products from "./components/products/Products.js"
 import Navbar from "./components/Navbar.js"
@@ -54,11 +55,16 @@ function App() {
         <Grid container direction='column' spacing={8}>
             <Grid item>
                 <header><Navbar cartItems={cart.total_items}/></header>
+                {/* <div><Home/></div> */}
             </Grid>
+                
             <Grid item container spacing={6}>
                 <Grid item xs={false} sm={1} md={2}></Grid>  {/* Left-hand gutter */}
                 <Grid item xs={12} sm={10} md={8}>
                 <BrowserRouter>
+                    <Route exact path="/">
+                        <div><Home/></div>
+                    </Route>
                     <Route exact path="/Products">
                         {/* <h2>Products</h2> */}
                         <Products></Products>
