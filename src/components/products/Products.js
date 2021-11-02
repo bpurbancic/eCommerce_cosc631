@@ -27,7 +27,7 @@ function Products () {
                 products.map((product) => { 
                     return (
                         <Grid item key={product.id} xs={12} sm={8} md={6}>
-                         <Card variant="outlined">
+                            <Card variant="outlined">
                                 <CardActionArea href={"/product/productId=" + product.id}> 
                                     <CardMedia style={{height:250}} image ={product.image.url} alt={product.name}/>
                                 </CardActionArea>

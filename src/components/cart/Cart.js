@@ -28,6 +28,12 @@ function Cart({cart, handleUpdateCart, handleEmptyCart}) {
                         handleEmptyCart();
                         }
                     } color='primary' size='small' > EMPTY CART </Button>
+                <Button href="/checkout" color='primary' size='small' > PROCEED TO CHECKOUT </Button>
+                {/* <Button onClick={
+                    () => {
+                        handleEmptyCart();
+                        }
+                    } color='primary' size='small' > PROCEED TO CHECKOUT </Button> */}
             </Grid>
 
         </Grid> 
