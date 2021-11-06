@@ -23,14 +23,22 @@ function App() {
         );
     }, []);
 
-    const handleAddToCart = (productId, quantity) => {
+    function handleAddToCart(productId, quantity) {
         commerce.cart.add(productId, quantity).then(
-            (response) => {
-                console.log(response);
-                setCart(response.cart);
-            }
-        );
+                    (response) => {
+                        console.log(response);
+                        setCart(response.cart);
+                    });
     }
+
+    // const handleAddToCart = (productId, quantity) => {
+    //     commerce.cart.add(productId, quantity).then(
+    //         (response) => {
+    //             console.log(response);
+    //             setCart(response.cart);
+    //         }
+    //     );
+    // }
 
     const handleUpdateCart = (lineItemId, quantity) => {
         console.log("update cart: " + quantity);
@@ -79,7 +87,8 @@ function App() {
                         handleEmptyCart={handleEmptyCart}/>
                     </Route>
                     <Route exact path="/Checkout">
-                        <Checkout/>
+                        <Checkout cart={cart}></Checkout>
+                        
                     </Route>
                 </BrowserRouter>
                 </Grid>
