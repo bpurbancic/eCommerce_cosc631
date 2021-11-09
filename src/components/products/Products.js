@@ -1,16 +1,10 @@
 import {commerce} from "../../lib/commerce.js";
 import {useEffect, useState} from "react";
 import { Card, CardActionArea, CardMedia, Grid } from "@material-ui/core";
-// import { makeStyles} from '@material-ui/core/styles';
 
-// const useStyles = makeStyles({
-//     media: {
-//         height: 400,
-//     }
-// });
 
 function Products () {
-    // const classes = useStyles();
+    
     const [products, setProducts] = useState([]);
     useEffect(() => {
     commerce.products.list().then(result => {

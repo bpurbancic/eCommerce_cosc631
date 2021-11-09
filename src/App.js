@@ -71,24 +71,16 @@ function App() {
                 <Grid item xs={false} sm={1} md={2}></Grid>  {/* Left-hand gutter */}
                 <Grid item xs={12} sm={10} md={8}>
                 <BrowserRouter>
-                    <Route exact path="/">
-                        <Home/>
-                    </Route>
-                    <Route exact path="/Products">
-                        {/* <h2>Products</h2> */}
-                        <Products></Products>
-                    </Route>
+                    <Route exact path = "/" component = {Home}/>
+                    <Route exact path="/Products"><Products/></Route>
                     <Route exact path="/Product/:productId" component={Product}>
-                        {/* <h3>Product</h3> */}
                         <Product handleAddToCart={handleAddToCart}></Product>
                     </Route>
                     <Route exact path = "/Cart">
                         <Cart cart={cart} handleUpdateCart={handleUpdateCart} 
                         handleEmptyCart={handleEmptyCart}/>
                     </Route>
-                    <Route exact path="/Checkout">
-                        <Checkout cart={cart}></Checkout>
-                        
+                    <Route exact path="/Checkout"><Checkout cart={cart}/>                    
                     </Route>
                 </BrowserRouter>
                 </Grid>
