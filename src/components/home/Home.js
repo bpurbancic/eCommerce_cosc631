@@ -2,6 +2,10 @@ import { useState } from "react";
 import { Button } from "@material-ui/core";
 
 function Home() {
+    // useEffect(() => {
+    //     console.log('Testing useEffect')
+    // });
+    
     
     const [greeting, setGreeting] = useState("Enjoy your stay!!");  
     // [] takes initial value (the parameter) & the function used to change that value.

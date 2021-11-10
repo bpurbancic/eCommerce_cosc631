@@ -3,6 +3,7 @@ import Product from "./components/products/Product.js"
 import Products from "./components/products/Products.js"
 import Navbar from "./components/Navbar.js"
 import Cart from "./components/cart/Cart.js"
+import Checkout from "./components/checkout/Checkout.js"
 import {BrowserRouter, Route} from "react-router-dom"
 import { Grid } from "@material-ui/core";
 import { useState, useEffect } from "react";
@@ -22,14 +23,22 @@ function App() {
         );
     }, []);
 
-    const handleAddToCart = (productId, quantity) => {
+    function handleAddToCart(productId, quantity) {
         commerce.cart.add(productId, quantity).then(
-            (response) => {
-                console.log(response);
-                setCart(response.cart);
-            }
-        );
+                    (response) => {
+                        console.log(response);
+                        setCart(response.cart);
+                    });
     }
+
+    // const handleAddToCart = (productId, quantity) => {
+    //     commerce.cart.add(productId, quantity).then(
+    //         (response) => {
+    //             console.log(response);
+    //             setCart(response.cart);
+    //         }
+    //     );
+    // }
 
     const handleUpdateCart = (lineItemId, quantity) => {
         console.log("update cart: " + quantity);
@@ -62,20 +71,16 @@ function App() {
                 <Grid item xs={false} sm={1} md={2}></Grid>  {/* Left-hand gutter */}
                 <Grid item xs={12} sm={10} md={8}>
                 <BrowserRouter>
-                    <Route exact path="/">
-                        <div><Home/></div>
-                    </Route>
-                    <Route exact path="/Products">
-                        {/* <h2>Products</h2> */}
-                        <Products></Products>
-                    </Route>
+                    <Route exact path = "/" component = {Home}/>
+                    <Route exact path="/Products"><Products/></Route>
                     <Route exact path="/Product/:productId" component={Product}>
-                        {/* <h3>Product</h3> */}
                         <Product handleAddToCart={handleAddToCart}></Product>
                     </Route>
                     <Route exact path = "/Cart">
                         <Cart cart={cart} handleUpdateCart={handleUpdateCart} 
                         handleEmptyCart={handleEmptyCart}/>
+                    </Route>
+                    <Route exact path="/Checkout"><Checkout cart={cart}/>                    
                     </Route>
                 </BrowserRouter>
                 </Grid>

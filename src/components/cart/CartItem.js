@@ -25,7 +25,7 @@ function CartItem ({cartItem, handleUpdateCart}) {
         <Grid item container spacing={2}>
             <Grid item xs={12} sm={4}>
                 <div className={classes.image}>
-                    <img src={cartItem.image.url} className={classes.img}></img>
+                    <img src={cartItem.image.url} alt="Cart item" className={classes.img}></img>
                     
                 </div>
             </Grid>
