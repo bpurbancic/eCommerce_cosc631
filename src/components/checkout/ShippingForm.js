@@ -6,23 +6,34 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
     console.log("**Checkout Token** ", checkoutToken);
 
     const [country, setCountry] = useState("2");
-    const [fullName, setName] = useState("Enter Your Full Name");
+    const [fullName, setName] = useState("");
+    // console.log(" ** fullName ** ", fullName);
 
+    // Can't this next code be in traditional function syntax?
+    const onNameTextFieldChange = (e) => {
+        setName(e.target.value);
+    }
 
     return (
         <Grid container direction="column">
             <Grid item>Shipping Form</Grid>
             <Grid item>
-                <Select value={country} onChange={(val) => {setCountry(val.target.value)}}>
+                <Select value={country} onChange={(e) => {setCountry(e.target.value)}}>
                     <MenuItem value = "1">Canada</MenuItem>
                     <MenuItem value = "2">United States</MenuItem>
                
                 </Select>
             </Grid>
             <Grid item>
-                <TextField fullName="fullName" label="Your full name" onChange={(val) => 
-                    {setName(val.target.value)}}>    
-                </TextField>
+                <TextField label = "Your full name" onChange = {onNameTextFieldChange}/>
+                {/* Below was used before creating a function to pass to onChange */}
+                {/* <TextField label="Your full name" onChange = 
+                    {(e) => {setName(e.target.value)}}>    
+                </TextField> */}
+                {/* Delete below? Does the fullName assignment do anything?!?! */}
+                {/* <TextField fullName="fullName" label="Your full name" onChange={(e) => 
+                    {setName(e.target.value)}}>    
+                </TextField> */}
             </Grid>
             <Grid item>
                 <Button color='secondary' size='medium' onClick = {() => 
