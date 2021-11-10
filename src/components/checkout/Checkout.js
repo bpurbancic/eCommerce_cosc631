@@ -5,7 +5,7 @@ import ShippingForm from "./ShippingForm.js";
 
 
 function Checkout({cart}) {
-    console.log(cart);
+    console.log(" ** cart ** ", cart);
    
     // const [checkoutToken, setID] = useState("Checkout ID will go here");  Maybe??
     const [checkoutToken, setCheckoutToken] = useState([]);
@@ -17,7 +17,7 @@ function Checkout({cart}) {
             // console.log("In useEffect");
             commerce.checkout.generateToken(cart.id, {"type": "cart"}).then(
             response => {
-                console.log(response);
+                console.log("** generateToken ** ", response);
                 setCheckoutToken(response.id);
             }) 
         }}, [cart.id]);
@@ -30,7 +30,7 @@ function Checkout({cart}) {
             <Grid item>
                 <ShippingForm checkoutToken={checkoutToken} setShippingInfo={setShippingInfo}/>
                 {shippingInfo["country"] &&
-                console.log("SHIPPING INFO: ", shippingInfo["name"],",",shippingInfo["country"])}
+                console.log("** Shipping Info (name, country code) ** ", shippingInfo["fullName"], ",", shippingInfo["country"])}
             </Grid>
             <Grid item>Payment Information Placeholder</Grid>
             <Grid item>Submission Placeholder</Grid>
