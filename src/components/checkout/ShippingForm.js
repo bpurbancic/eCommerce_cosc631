@@ -16,7 +16,7 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
 
     return (
         <Grid container direction="column">
-            <Grid item>Shipping Form</Grid>
+            <Grid item><h3>Shipping Form</h3></Grid>
             <Grid item>
                 <Select value={country} onChange={(e) => {setCountry(e.target.value)}}>
                     <MenuItem value = "1">Canada</MenuItem>
@@ -30,13 +30,9 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
                 {/* <TextField label="Your full name" onChange = 
                     {(e) => {setName(e.target.value)}}>    
                 </TextField> */}
-                {/* Delete below? Does the fullName assignment do anything?!?! */}
-                {/* <TextField fullName="fullName" label="Your full name" onChange={(e) => 
-                    {setName(e.target.value)}}>    
-                </TextField> */}
             </Grid>
             <Grid item>
-                <Button color='secondary' size='medium' onClick = {() => 
+                <Button color='secondary' size='small' onClick = {() => 
                     {setShippingInfo({"fullName":fullName, "country":country})}}>Click to Save Shipping Info</Button>
             </Grid>
             

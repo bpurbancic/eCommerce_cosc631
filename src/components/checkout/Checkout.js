@@ -25,15 +25,15 @@ function Checkout({cart}) {
     return (
         <Grid container direction='column'>
             <Grid item>
-                <h3>Checkout</h3>
+                <h2>Checkout</h2>
             </Grid>
             <Grid item>
                 <ShippingForm checkoutToken={checkoutToken} setShippingInfo={setShippingInfo}/>
                 {shippingInfo["country"] &&
                 console.log("** Shipping Info (name, country code) ** ", shippingInfo["fullName"], ",", shippingInfo["country"])}
             </Grid>
-            <Grid item>Payment Information Placeholder</Grid>
-            <Grid item>Submission Placeholder</Grid>
+            <Grid item><h3>Payment Information Placeholder</h3></Grid>
+            <Grid item><h3>Submission Placeholder</h3></Grid>
             
         </Grid>
     )
