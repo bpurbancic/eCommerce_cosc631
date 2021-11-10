@@ -30,7 +30,7 @@ function Checkout({cart}) {
             <Grid item>
                 <ShippingForm checkoutToken={checkoutToken} setShippingInfo={setShippingInfo}/>
                 {shippingInfo["country"] &&
-                console.log("** Shipping Info (name, country code) ** ", shippingInfo["fullName"], ",", shippingInfo["country"])}
+                console.log("** Shipping Info (name, country code) ** ", shippingInfo["name"], ",", shippingInfo["country"])}
             </Grid>
             <Grid item><h3>Payment Information Placeholder</h3></Grid>
             <Grid item><h3>Submission Placeholder</h3></Grid>
