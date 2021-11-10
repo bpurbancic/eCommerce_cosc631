@@ -5,7 +5,7 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
     // Does above require {} inside the () surrounding both parameters?
     console.log("**Checkout Token** ", checkoutToken);
 
-    const [country, setCountry] = useState("2");
+    const [country, setCountry] = useState("1");
     const [fullName, setName] = useState("");
     // console.log(" ** fullName ** ", fullName);
 
