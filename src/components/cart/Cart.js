@@ -35,4 +35,4 @@ function Cart({cart, handleUpdateCart, handleEmptyCart}) {
     );
 }
 
-export default Cart;
+export default Cart; 
