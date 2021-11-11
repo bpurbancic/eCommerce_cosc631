@@ -23,6 +23,54 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
         }
     }
 
+    const [street, setStreet] = useState("");
+    const [streetError, setStreetError] = useState(false);
+    const [streetHelper, setStreetHelper] = useState("");
+
+    const onStreetChange = (e) => {setStreet(e.target.value)}
+
+    const onStreetUnfocused = (e) => { 
+        if (!street) {
+            setStreetError(true);
+            setStreetHelper("Street cannot be empty.")
+        } else { 
+            setStreetError(false);
+            setStreetHelper("");
+        }
+    }
+
+    const [city, setCity] = useState("");
+    const [cityError, setCityError] = useState(false);
+    const [cityHelper, setCityHelper] = useState("");
+
+    const onCityChange = (e) => {setCity(e.target.value)}
+
+    const onCityUnfocused = (e) => { 
+        if (!city) {
+            setCityError(true);
+            setCityHelper("City cannot be empty.")
+        } else { 
+            setCityError(false);
+            setCityHelper("");
+        }
+    }
+
+    const [postalCode, setPostalCode] = useState("");
+    const [postalCodeError, setPostalCodeError] = useState(false);
+    const [postalCodeHelper, setPostalCodeHelper] = useState("");
+
+    const onPostalCodeChange = (e) => {setPostalCode(e.target.value)}
+
+    const onPostalCodeUnfocused = (e) => { 
+        if (!postalCode) {
+            setPostalCodeError(true);
+            setPostalCodeHelper("Postal code cannot be empty.")
+        } else { 
+            setPostalCodeError(false);
+            setPostalCodeHelper("");
+        }
+    }
+
     const [phone, setPhone] = useState("");
     const [phoneError, setPhoneError] = useState(false);
     const [phoneHelper, setPhoneHelper] = useState("");
@@ -67,19 +115,33 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
                             error: phoneError,
                             helperText: phoneHelper,
                             onBlur: onPhoneUnfocused
-
                         }
 
                     }
                 /> 
             </Grid>
-            {/* <Grid item>
-                <TextField label = "Street address" onChange = {}
+            <Grid item>
+                <TextField label = "Street Address" onChange = {onStreetChange}
                     error = {streetError}
                     helperText={streetHelper}
-                    onBlur = {onStreetFieldUnfocused}
+                    onBlur = {onStreetUnfocused}
                 />
-            </Grid> */}
+            </Grid>
+            <Grid item>
+                <TextField label = "City" onChange = {onCityChange}
+                    error = {cityError}
+                    helperText={cityHelper}
+                    onBlur = {onCityUnfocused}
+                />
+            </Grid>
+            <Grid item>
+                <TextField label = "Postal Code" onChange = {onPostalCodeChange}
+                    error = {postalCodeError}
+                    helperText={postalCodeHelper}
+                    onBlur = {onPostalCodeUnfocused}
+                />
+            </Grid>
+           
             <Grid item>
                 <Select value={country} onChange={(e) => {setCountry(e.target.value)}}>
                     <MenuItem value = "1">Canada</MenuItem>
