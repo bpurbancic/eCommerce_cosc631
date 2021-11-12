@@ -161,7 +161,7 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
                     onCityUnfocused(city)
                     onPostalCodeUnfocused(postalCode)
                     onPhoneUnfocused(phone)
-
+                    if (name && street && city && postalCode && phone) {
                     setShippingInfo(
                         {
                             "name":name,
@@ -171,7 +171,7 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
                             "postalCode":postalCode,
                             "phone":phone
                         }
-                    )
+                    ) }
                 }
                 }>Click to Save Shipping Info</Button>
             
