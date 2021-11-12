@@ -149,11 +149,33 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
                
                 </Select>
             </Grid>
-            <Grid item>
+            {/* Below is original code before changing shipping button to confirm fields are not empty */}
+            {/* <Grid item>
                 <Button color='secondary' size='small' onClick = {() => 
                     {setShippingInfo({"name":name, "country":country})}}>Click to Save Shipping Info</Button>
-            </Grid>
+            </Grid> */}
+            <Grid item>
+                <Button color='secondary' size='small' onClick = {() => {
+                    onNameUnfocused(name)
+                    onStreetUnfocused(street)
+                    onCityUnfocused(city)
+                    onPostalCodeUnfocused(postalCode)
+                    onPhoneUnfocused(phone)
+
+                    setShippingInfo(
+                        {
+                            "name":name,
+                            "country":country,
+                            "street":street,
+                            "city":city,
+                            "postalCode":postalCode,
+                            "phone":phone
+                        }
+                    )
+                }
+                }>Click to Save Shipping Info</Button>
             
+            </Grid>
         </Grid>
         
         
