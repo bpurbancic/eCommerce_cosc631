@@ -205,6 +205,17 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
                    }
                 </Select>
             </Grid>}
+            {shippingMethods && shippingMethod && <Grid item>
+                <Select value={shippingMethod} onChange={(e) => {setShippingMethod(e.target.value)}}>
+                {
+                    shippingMethods.map((eachMethod) => {
+                        return <MenuItem value = {eachMethod["id"]} key = {eachMethod["id"]}>
+                            {eachMethod["description"]}
+                        </MenuItem>
+                       })
+                   }
+                </Select>
+            </Grid>}
             
             <Grid item>
                 <Button color='secondary' size='small' onClick = {() => {
