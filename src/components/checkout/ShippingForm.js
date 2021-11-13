@@ -1,10 +1,22 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import { Button, Grid, MenuItem, Select, TextField } from "@material-ui/core";
 import ReactPhoneInput from 'react-phone-input-material-ui';
+import { commerce } from '../../lib/commerce';
 
 function ShippingForm({checkoutToken, setShippingInfo}) {
     // Does above require {} inside the () surrounding both parameters?
     // console.log("**Checkout Token** ", checkoutToken);
+
+    const [countries, setCountries] = useState(undefined);
+    useEffect(() => {
+        commerce.services.localeListShippingCountries(checkoutToken).then(
+            (response) => {
+                // console.log(response);
+                setCountries(response["countries"]);
+            }
+        )
+    }, [checkoutToken])
+    console.log(countries);
 
     const [name, setName] = useState("");
     const [nameError, setNameError] = useState(false);
