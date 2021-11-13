@@ -4,7 +4,7 @@ import ReactPhoneInput from 'react-phone-input-material-ui';
 
 function ShippingForm({checkoutToken, setShippingInfo}) {
     // Does above require {} inside the () surrounding both parameters?
-    console.log("**Checkout Token** ", checkoutToken);
+    // console.log("**Checkout Token** ", checkoutToken);
 
     const [name, setName] = useState("");
     const [nameError, setNameError] = useState(false);
