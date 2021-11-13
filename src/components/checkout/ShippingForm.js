@@ -7,16 +7,18 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
     // Does above require {} inside the () surrounding both parameters?
     // console.log("**Checkout Token** ", checkoutToken);
 
+    const [country, setCountry] = useState("");
     const [countries, setCountries] = useState(undefined);
     useEffect(() => {
         commerce.services.localeListShippingCountries(checkoutToken).then(
             (response) => {
                 // console.log(response);
                 setCountries(response["countries"]);
+                setCountry(Object.keys(response["countries"])[0]);
             }
         )
     }, [checkoutToken])
-    console.log(countries);
+    console.log(" ** country:", country);
 
     const [name, setName] = useState("");
     const [nameError, setNameError] = useState(false);
@@ -103,8 +105,6 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
 
     console.log("  ** phone: ", phone)
 
-    const [country, setCountry] = useState("1");
-
     return (
         <Grid container direction="column">
             <Grid item><h3>Shipping Form</h3></Grid>
@@ -154,13 +154,17 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
                 />
             </Grid>
            
-            <Grid item>
+            {countries && country && <Grid item>
                 <Select value={country} onChange={(e) => {setCountry(e.target.value)}}>
-                    <MenuItem value = "1">Canada</MenuItem>
-                    <MenuItem value = "2">United States</MenuItem>
-               
+                {
+                    Object.keys(countries).map((countryCode) => {
+                        return <MenuItem value = {countryCode} key = {countryCode}>
+                            {countries[countryCode]}
+                            </MenuItem>
+                       })
+                   }
                 </Select>
-            </Grid>
+            </Grid>}
             {/* Below is original code before changing shipping button to confirm fields are not empty */}
             {/* <Grid item>
                 <Button color='secondary' size='small' onClick = {() => 
