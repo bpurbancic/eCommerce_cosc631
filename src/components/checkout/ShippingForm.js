@@ -42,12 +42,12 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
             "region": region,
         }).then((response) => {
                 setShippingMethods(response);
-                setShippingMethod(response[0])
+                setShippingMethod(response[0]["id"])
             }
         )
     }, [checkoutToken, country, region])
     console.log(" ** shippingMethods:", shippingMethods)
-    console.log(" ** shippingMethod:", shippingMethod)
+    console.log(" ** shippingMethodID:", shippingMethod)
 
     const [name, setName] = useState("");
     const [nameError, setNameError] = useState(false);
@@ -205,6 +205,7 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
                    }
                 </Select>
             </Grid>}
+            
             <Grid item>
                 <Button color='secondary' size='small' onClick = {() => {
                     onNameUnfocused(name)
