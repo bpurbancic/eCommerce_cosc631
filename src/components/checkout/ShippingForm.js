@@ -11,25 +11,28 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
     const [countries, setCountries] = useState(undefined);
     const [country, setCountry] = useState("");
     useEffect(() => {
-        commerce.services.localeListShippingCountries(checkoutToken).then(
-            (response) => {
-                // console.log(response);
-                setCountries(response["countries"]);
-                setCountry(Object.keys(response["countries"])[0]);
-            }
-        )
+        if (checkoutToken) {
+            commerce.services.localeListShippingCountries(checkoutToken).then(
+                (response) => {
+                    // console.log(response);
+                    setCountries(response["countries"]);
+                    setCountry(Object.keys(response["countries"])[0]);
+                }
+            )
+        }
     }, [checkoutToken])
     console.log(" ** country:", country);
 
     const [regions, setRegions] = useState(undefined);
     const [region, setRegion] = useState("");
     useEffect(() => {
-        commerce.services.localeListShippingSubdivisions(checkoutToken, country).then(
-            (response) => {
-                setRegions(response["subdivisions"]);
-                setRegion(Object.keys(response["subdivisions"])[0]);
-            }
-        )
+        if (country) {
+            commerce.services.localeListShippingSubdivisions(checkoutToken, country).then(
+                (response) => {
+                    setRegions(response["subdivisions"]);
+                    setRegion(Object.keys(response["subdivisions"])[0]);
+                }
+        )}
     }, [checkoutToken, country])
     console.log("** regions:", regions);
     console.log("** region:", region);
@@ -37,14 +40,16 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
     const [shippingMethods, setShippingMethods] = useState(undefined);
     const [shippingMethod, setShippingMethod] = useState("");
     useEffect(() => {
-        commerce.checkout.getShippingOptions(checkoutToken, {
-            "country": country,
-            "region": region,
-        }).then((response) => {
+        if (country && region) {
+            commerce.checkout.getShippingOptions(checkoutToken, {
+                "country": country,
+                "region": region,
+            }).then((response) => {
                 setShippingMethods(response);
                 setShippingMethod(response[0]["id"])
-            }
-        )
+                }
+            )
+        }
     }, [checkoutToken, country, region])
     console.log(" ** shippingMethods:", shippingMethods)
     console.log(" ** shippingMethodID:", shippingMethod)
@@ -224,19 +229,25 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
                     onCityUnfocused(city)
                     onPostalCodeUnfocused(postalCode)
                     onPhoneUnfocused(phone)
-                    if (name && street && city && postalCode && phone) {
+                    if (name && phone && street && city && postalCode) {
                     setShippingInfo(
                         {
                             "name":name,
-                            "country":country,
+                            "phone":phone,
                             "street":street,
                             "city":city,
                             "postalCode":postalCode,
-                            "phone":phone
-                        }
-                    ) }
+                            "country":country,
+                            "region":region,
+                            "shippingMethod":shippingMethod
+                        },
+                        
+                    ) 
+                    console.log("** All shipping info: ",name,country,street,city,region,postalCode,phone,shippingMethod)
+                    }
                 }
-                }>Click to Save Shipping Info</Button>
+                }
+                >Click to Save Shipping Info</Button>
             
             </Grid>
         </Grid>
