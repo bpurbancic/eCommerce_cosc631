@@ -20,6 +20,17 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
     }, [checkoutToken])
     console.log(" ** country:", country);
 
+    const [regions, setRegions] = useState(undefined);
+    useEffect(() => {
+        commerce.services.localeListShippingSubdivisions(checkoutToken, country).then(
+            (response) => {
+                setRegions(response["subdivisions"]);
+                // setCountry(Object.keys(response["countries"])[0]);
+            }
+        )
+    }, [checkoutToken, country])
+    console.log("** Regions:", regions);
+
     const [name, setName] = useState("");
     const [nameError, setNameError] = useState(false);
     const [nameHelper, setNameHelper] = useState("");
@@ -103,7 +114,7 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
         }
     }
 
-    console.log("  ** phone: ", phone)
+    // console.log("  ** phone: ", phone)
 
     return (
         <Grid container direction="column">
