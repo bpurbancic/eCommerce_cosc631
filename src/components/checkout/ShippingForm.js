@@ -7,8 +7,9 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
     // Does above require {} inside the () surrounding both parameters?
     // console.log("**Checkout Token** ", checkoutToken);
 
-    const [country, setCountry] = useState("");
+    
     const [countries, setCountries] = useState(undefined);
+    const [country, setCountry] = useState("");
     useEffect(() => {
         commerce.services.localeListShippingCountries(checkoutToken).then(
             (response) => {
@@ -21,15 +22,17 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
     console.log(" ** country:", country);
 
     const [regions, setRegions] = useState(undefined);
+    const [region, setRegion] = useState("");
     useEffect(() => {
         commerce.services.localeListShippingSubdivisions(checkoutToken, country).then(
             (response) => {
                 setRegions(response["subdivisions"]);
-                // setCountry(Object.keys(response["countries"])[0]);
+                setRegion(Object.keys(response["subdivisions"])[0]);
             }
         )
     }, [checkoutToken, country])
-    console.log("** Regions:", regions);
+    console.log("** regions:", regions);
+    console.log("** region:", region);
 
     const [name, setName] = useState("");
     const [nameError, setNameError] = useState(false);
