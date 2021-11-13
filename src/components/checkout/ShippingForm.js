@@ -34,6 +34,21 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
     console.log("** regions:", regions);
     console.log("** region:", region);
 
+    const [shippingMethods, setShippingMethods] = useState(undefined);
+    const [shippingMethod, setShippingMethod] = useState("");
+    useEffect(() => {
+        commerce.checkout.getShippingOptions(checkoutToken, {
+            "country": country,
+            "region": region,
+        }).then((response) => {
+                setShippingMethods(response);
+                setShippingMethod(response[0])
+            }
+        )
+    }, [checkoutToken, country, region])
+    console.log(" ** shippingMethods:", shippingMethods)
+    console.log(" ** shippingMethod:", shippingMethod)
+
     const [name, setName] = useState("");
     const [nameError, setNameError] = useState(false);
     const [nameHelper, setNameHelper] = useState("");
