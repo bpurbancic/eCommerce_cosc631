@@ -179,11 +179,17 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
                    }
                 </Select>
             </Grid>}
-            {/* Below is original code before changing shipping button to confirm fields are not empty */}
-            {/* <Grid item>
-                <Button color='secondary' size='small' onClick = {() => 
-                    {setShippingInfo({"name":name, "country":country})}}>Click to Save Shipping Info</Button>
-            </Grid> */}
+            {regions && region && <Grid item>
+                <Select value={region} onChange={(e) => {setRegion(e.target.value)}}>
+                {
+                    Object.keys(regions).map((regionCode) => {
+                        return <MenuItem value = {regionCode} key = {regionCode}>
+                            {regions[regionCode]}
+                            </MenuItem>
+                       })
+                   }
+                </Select>
+            </Grid>}
             <Grid item>
                 <Button color='secondary' size='small' onClick = {() => {
                     onNameUnfocused(name)
