@@ -17,7 +17,7 @@ function App() {
     useEffect(() => {
         commerce.cart.retrieve().then(
             (response) => {
-                console.log(response);
+                // console.log(response);
                 setCart(response);
             }
         );

@@ -21,7 +21,7 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
             )
         }
     }, [checkoutToken])
-    console.log(" ** country:", country);
+    // console.log(" ** country:", country);
 
     const [regions, setRegions] = useState(undefined);
     const [region, setRegion] = useState("");
@@ -34,8 +34,8 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
                 }
         )}
     }, [checkoutToken, country])
-    console.log("** regions:", regions);
-    console.log("** region:", region);
+    // console.log("** regions:", regions);
+    // console.log("** region:", region);
 
     const [shippingMethods, setShippingMethods] = useState(undefined);
     const [shippingMethod, setShippingMethod] = useState("");
@@ -51,8 +51,8 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
             )
         }
     }, [checkoutToken, country, region])
-    console.log(" ** shippingMethods:", shippingMethods)
-    console.log(" ** shippingMethodID:", shippingMethod)
+    // console.log(" ** shippingMethods:", shippingMethods)
+    // console.log(" ** shippingMethodID:", shippingMethod)
 
     const [name, setName] = useState("");
     const [nameError, setNameError] = useState(false);
@@ -68,6 +68,22 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
         } else { 
             setNameError(false);
             setNameHelper("");
+        }
+    }
+
+    const [email, setEmail] = useState("");
+    const [emailError, setEmailError] = useState(false);
+    const [emailHelper, setEmailHelper] = useState("");
+
+    const onEmailChange = (e) => {setEmail(e.target.value)}
+
+    const onEmailUnfocused = (e) => { 
+        if (!email) {
+            setEmailError(true);
+            setEmailHelper("Email cannot be empty.")
+        } else { 
+            setEmailError(false);
+            setEmailHelper("");
         }
     }
 
@@ -155,6 +171,13 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
                 </TextField> */}
             </Grid>
             <Grid item>
+                <TextField label = "Email Address" onChange = {onEmailChange}
+                    error = {emailError}
+                    helperText={emailHelper}
+                    onBlur = {onEmailUnfocused}
+                />
+            </Grid>
+            <Grid item>
                 <ReactPhoneInput component={TextField} onChange={onPhoneChange}
                     inputProps={
                         {
@@ -225,14 +248,16 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
             <Grid item>
                 <Button color='secondary' size='small' onClick = {() => {
                     onNameUnfocused(name)
+                    onEmailUnfocused(email)
                     onStreetUnfocused(street)
                     onCityUnfocused(city)
                     onPostalCodeUnfocused(postalCode)
                     onPhoneUnfocused(phone)
-                    if (name && phone && street && city && postalCode) {
+                    if (name && email && phone && street && city && postalCode) {
                     setShippingInfo(
                         {
                             "name":name,
+                            "email":email,
                             "phone":phone,
                             "street":street,
                             "city":city,
@@ -243,7 +268,7 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
                         },
                         
                     ) 
-                    console.log("** All shipping info: ",name,country,street,city,region,postalCode,phone,shippingMethod)
+                    // console.log("** All shipping info: ",name,country,street,city,region,postalCode,phone,shippingMethod)
                     }
                 }
                 }
