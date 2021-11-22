@@ -4,6 +4,7 @@ import Products from "./components/products/Products.js"
 import Navbar from "./components/Navbar.js"
 import Cart from "./components/cart/Cart.js"
 import Checkout from "./components/checkout/Checkout.js"
+import Login from "./components/login/Login.js"
 import {BrowserRouter, Route} from "react-router-dom"
 import { Grid } from "@material-ui/core";
 import { useState, useEffect } from "react";
@@ -64,7 +65,7 @@ function App() {
         <Grid container direction='column' spacing={8}>
             <Grid item>
                 <header><Navbar cartItems={cart.total_items}/></header>
-                {/* <div><Home/></div> */}
+                
             </Grid>
                 
             <Grid item container spacing={6}>
@@ -72,6 +73,7 @@ function App() {
                 <Grid item xs={12} sm={10} md={8}>
                 <BrowserRouter>
                     <Route exact path = "/" component = {Home}/>
+                    <Route exact path = "/Login" component = {Login}/>
                     <Route exact path="/Products"><Products/></Route>
                     <Route exact path="/Product/:productId" component={Product}>
                         <Product handleAddToCart={handleAddToCart}></Product>
