@@ -37,7 +37,7 @@ function Login() {
                     onBlur = {onEmailUnfocused}
                 />
             </Grid>
-            <Grid item><Button size = "xsmall" onClick={handleEmail()}>Request Login Credentials</Button></Grid>
+            <Grid item><Button size = "xsmall" onClick={handleEmail}>Request Login Credentials</Button></Grid>
             
         </Grid>
         

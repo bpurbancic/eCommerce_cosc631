@@ -1,37 +1,11 @@
-import { useState } from "react";
-import { Button } from "@material-ui/core";
 
 function Home() {
-    // useEffect(() => {
-    //     console.log('Testing useEffect')
-    // });
     
-    
-    const [greeting, setGreeting] = useState("Enjoy your stay!!");  
-    // [] takes initial value (the parameter) & the function used to change that value.
-
-    const [msg, setMsg] = useState("Click here for an important message.");
-
-    const changeGreeting = () => {
-        setGreeting('Please click the Chat button for help!');
-    }
-
-    const changeMsg = () => {
-        setMsg('This is a lower-case b button')
-
-    }
-
-    return (
+      return (
         <div>
         <h2>Welcome to We R Toys!!</h2>
-        <p>
-        <Button onClick={
-            () => {
-                changeGreeting();
-                }
-            } color='primary' size='large' variant='outlined' > {greeting} </Button>
-        </p>
-        <button onClick={changeMsg}>{ msg }</button>    
+        <h3>Please click the link in the navigation bar to be redirected to the login page</h3>
+        
         </div>
         
     );
