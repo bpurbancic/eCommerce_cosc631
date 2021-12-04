@@ -27,10 +27,13 @@ function Login() {
             // commerce.customer.login(email, window.location.href).then((response) => console.log(response));
             
             // The reference below returns to the root url
-            var url = window.location.href;
+            let url = window.location.href;
+            let url_parsed = url.substring(0, url.lastIndexOf('/'))
+            let url_user = url_parsed + "/UserHome";
             
-            commerce.customer.login(email, url.substring(0, url.lastIndexOf('/'))).then((response) => console.log(response));
-            // console.log(url.substring(0, url.lastIndexOf('/')));
+            
+            commerce.customer.login(email, url_user).then((response) => console.log(response));
+            console.log("** HomeLogin: " + url_user);
             setEmailSent(true);            
         }
     }

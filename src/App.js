@@ -1,4 +1,5 @@
 import Home from "./components/home/Home.js"
+import UserHome from "./components/home/UserHome.js"
 import Product from "./components/products/Product.js"
 import Products from "./components/products/Products.js"
 import Navbar from "./components/Navbar.js"
@@ -74,6 +75,7 @@ function App() {
                 <BrowserRouter>
                     <Route exact path = "/" component = {Home}/>
                     <Route exact path = "/Login" component = {Login}/>
+                    <Route exact path = "/UserHome/:id" component = {UserHome}/>
                     <Route exact path="/Products"><Products/></Route>
                     <Route exact path="/Product/:productId" component={Product}>
                         <Product handleAddToCart={handleAddToCart}></Product>
