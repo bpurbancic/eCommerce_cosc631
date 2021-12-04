@@ -24,7 +24,13 @@ function Login() {
 
     const handleEmail = (e) => {
         if(email) {
-            commerce.customer.login(email, window.location.href+"/Login").then((response) => console.log(response));
+            // commerce.customer.login(email, window.location.href).then((response) => console.log(response));
+            
+            // The reference below returns to the root url
+            var url = window.location.href;
+            
+            commerce.customer.login(email, url.substring(0, url.lastIndexOf('/'))).then((response) => console.log(response));
+            // console.log(url.substring(0, url.lastIndexOf('/')));
             setEmailSent(true);            
         }
     }
@@ -33,7 +39,7 @@ function Login() {
             <Grid container direction="column">
             <Grid item><h3>Login</h3></Grid>
 
-            <Grid item><h4>An email is sent to your email address.</h4></Grid>
+            <Grid item><h4>An email was sent to your email address.</h4></Grid>
 
         </Grid>
             
