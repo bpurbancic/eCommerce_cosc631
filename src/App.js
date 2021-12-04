@@ -62,6 +62,9 @@ function App() {
         );
     }
 
+    const [userToken, setUserToken] = useState();
+    const [loggedIn, setLoggedIn] = useState(false);
+
     return(
         <Grid container direction='column' spacing={8}>
             <Grid item>
@@ -75,7 +78,10 @@ function App() {
                 <BrowserRouter>
                     <Route exact path = "/" component = {Home}/>
                     <Route exact path = "/Login" component = {Login}/>
-                    <Route exact path = "/UserHome/:id" component = {UserHome}/>
+                    <Route exact path = "/UserHome/:userToken">
+                        <UserHome setUserToken={setUserToken} setLoggedIn={setLoggedIn}/>
+                    </Route>
+                    {/* <Route path="/login/home/:userToken"><Home setUserToken={setUserToken} setIsLogged={setIsLogged}/></Route>  */}
                     <Route exact path="/Products"><Products/></Route>
                     <Route exact path="/Product/:productId" component={Product}>
                         <Product handleAddToCart={handleAddToCart}></Product>

@@ -1,33 +1,37 @@
 import { useEffect, useState } from "react";
+import {useParams} from "react-router";
 import { commerce } from "../../lib/commerce";
 
-function UserHome({id, emailAddress}) {
+function UserHome({setUserToken, setLoggedIn}) {
 
-  const [custEmail, setCustEmail] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [custID, setCustID] = useState();
+  const [cust, setCust] = useState("");
+
+  let {userToken} = useParams();
+  setUserToken(userToken);
 
   useEffect(() => {
-    commerce.customer.getToken(id).then((response) =>
+    commerce.customer.getToken(userToken).then((response) =>
       {
-        console.log("**Email: " + custEmail);
         setLoggedIn(true);
-        console.log("***User id: " + id);
+        setCustID(response["customer_id"]);
+        console.log("***UserToken: " + userToken);
       });
   })
 
-  useEffect(() => {
-    if (loggedIn) {
-      commerce.customer.about().then((customer) => {
-        setCustEmail(customer.email);
-        console.log("*** customer, email: " + customer, commerce.customer.id(emailAddress));
-      }
-        )
-    }
-  })
+  // Sarah's version
+  useEffect (() => {
+    commerce.customer.about().then((customer) => {
+        console.log(customer["email"]);
+        setCust(customer);
+    });
+  },[custID]);
+
+  // useEffect (() => )
     
     return (
       <div>
-      <h2>Welcome email placeholder</h2>
+        <h2>Welcome... {cust["email"]}</h2>
       
       </div>
       

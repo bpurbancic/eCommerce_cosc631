@@ -33,7 +33,7 @@ function Login() {
             
             
             commerce.customer.login(email, url_user).then((response) => console.log(response));
-            console.log("** HomeLogin: " + url_user);
+            console.log("** UserHome: " + url_user);
             setEmailSent(true);            
         }
     }
@@ -69,22 +69,3 @@ function Login() {
 }
 
 export default Login;
-
-// const [isSent, setIsSent] = useState(false);
-// if(isSent) {
-//     return <h3> An email is sent to {loginEmail}</h3>
-// }
-
-// setIsSent(true) in your handleemail  after console.log
-
-// state = { showing: true };
-
-//     render() {
-//         const { showing } = this.state;
-//         return (
-//             <div>
-//                 <button onClick={() => this.setState({ showing: !showing })}>toggle</button>
-//                 <div style={{ display: (showing ? 'block' : 'none') }}>This is visible</div>
-//             </div>  
-//         )
-//     }
