@@ -3,6 +3,7 @@ import UserHome from "./components/home/UserHome.js"
 import Product from "./components/products/Product.js"
 import Products from "./components/products/Products.js"
 import Navbar from "./components/Navbar.js"
+import NavbarLogout from "./components/NavbarLogout.js"
 import Cart from "./components/cart/Cart.js"
 import Checkout from "./components/checkout/Checkout.js"
 import Login from "./components/login/Login.js"
@@ -10,7 +11,6 @@ import {BrowserRouter, Route} from "react-router-dom"
 import { Grid } from "@material-ui/core";
 import { useState, useEffect } from "react";
 import { commerce } from "./lib/commerce";
-
 
 
 function App() {
@@ -78,6 +78,9 @@ function App() {
                 <BrowserRouter>
                     <Route exact path = "/" component = {Home}/>
                     <Route exact path = "/Login" component = {Login}/>
+                    <Route exact path = "/Logout" component={NavbarLogout}>
+                        <NavbarLogout setUserToken={setUserToken} handleEmptyCart={handleEmptyCart}></NavbarLogout>
+                    </Route>
                     <Route exact path = "/UserHome/:userToken">
                         <UserHome setUserToken={setUserToken} setLoggedIn={setLoggedIn}/>
                     </Route>
