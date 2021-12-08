@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {useParams} from "react-router";
 import { commerce } from "../../lib/commerce";
+import { Grid } from "@material-ui/core";
 
 function UserHome({setUserToken, setLoggedIn}) {
 
@@ -15,11 +16,19 @@ function UserHome({setUserToken, setLoggedIn}) {
       {
         setLoggedIn(true);
         setCustID(response["customer_id"]);
+        console.log(response["customer_id"]);
         console.log("***UserToken: " + userToken);
       });
-  })
+  },[userToken]);
 
-  // Sarah's version
+  useEffect (() => { 
+    if (commerce.customer.isLoggedIn()) {
+      setLoggedIn(true);
+      setCustID(commerce.customer.id());
+    }
+
+  },[setLoggedIn, setCustID]);
+
   useEffect (() => {
     commerce.customer.about().then((customer) => {
         console.log(customer["email"]);
@@ -27,13 +36,26 @@ function UserHome({setUserToken, setLoggedIn}) {
     });
   },[custID]);
 
-  // useEffect (() => )
+  useEffect (() => {
+    commerce.customer.getOrders(custID).then((orders) =>
+    {   
+        console.log(custID);
+        console.log(orders);
+    });
+  },[custID]);
+
+  
     
     return (
-      <div>
-        <h2>Welcome... {cust["email"]}</h2>
-      
-      </div>
+      <Grid item container spacing={2}>
+            <Grid item xs={12} sm={8} md={6}>
+              <div>
+                <h2>Welcome... {cust["email"]}</h2>
+              </div>
+            </Grid>
+
+      </Grid>
+     
       
   );
 }
