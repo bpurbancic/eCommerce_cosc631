@@ -19,7 +19,7 @@ function UserHome({setUserToken, setLoggedIn}) {
         console.log(response["customer_id"]);
         console.log("***UserToken: " + userToken);
       });
-  },[userToken]);
+  },[userToken, setLoggedIn]);
 
   useEffect (() => { 
     if (commerce.customer.isLoggedIn()) {
@@ -36,11 +36,14 @@ function UserHome({setUserToken, setLoggedIn}) {
     });
   },[custID]);
 
+  const [orders, setOrders] = useState([]);
+
   useEffect (() => {
     commerce.customer.getOrders(custID).then((orders) =>
     {   
         console.log(custID);
         console.log(orders);
+        setOrders(orders);
     });
   },[custID]);
 
@@ -51,6 +54,13 @@ function UserHome({setUserToken, setLoggedIn}) {
             <Grid item xs={12} sm={8} md={6}>
               <div>
                 <h2>Welcome... {cust["email"]}</h2>
+              </div>
+            </Grid>
+            <Grid item xs={12} sm={8} md={6}>
+              <div>
+                {/* <p>
+                  {orders}
+                </p> */}
               </div>
             </Grid>
 
