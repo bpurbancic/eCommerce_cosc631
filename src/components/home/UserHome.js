@@ -57,10 +57,11 @@ function UserHome({setUserToken, setLoggedIn}) {
           
           orders.map((order) => {
             // var timestamp = order.created;
-            var orderDate = new Date(order.created * 1000);
+            var orderDate = new Date(0);
+            orderDate.setUTCSeconds(order.created);
             return (
               <Grid item key={order.id} xs={12} s={10} md={8}>
-                <p>Order Date: {orderDate.getFullYear()}-{orderDate.getMonth()}-{orderDate.getDate()}</p>
+                <h4>Order placed: {orderDate.toLocaleDateString()}</h4>
                 <p>Order Total: {order.order_value.formatted_with_symbol}</p>
                 <p>Order Items:</p>
                 <table>
