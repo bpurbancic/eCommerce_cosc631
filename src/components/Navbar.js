@@ -2,7 +2,6 @@ import { AppBar, Badge, Button, Toolbar, Typography, IconButton } from "@materia
 import ToysIcon from '@material-ui/icons/Toys';
 import HomeIcon from '@material-ui/icons/Home';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-// import NavbarLogout from "./NavbarLogout.js";
 import { commerce } from "../lib/commerce";
 
 function Navbar({cartItems}) {
