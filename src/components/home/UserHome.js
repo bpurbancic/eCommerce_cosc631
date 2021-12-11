@@ -39,32 +39,67 @@ function UserHome({setUserToken, setLoggedIn}) {
   const [orders, setOrders] = useState([]);
 
   useEffect (() => {
-    commerce.customer.getOrders(custID).then((orders) =>
+    commerce.customer.getOrders(custID).then((result) =>
     {   
         console.log(custID);
-        console.log(orders);
-        setOrders(orders);
+        console.log(result);
+        setOrders(result.data);
     });
   },[custID]);
 
   
     
     return (
-      <Grid item container spacing={2}>
-            <Grid item xs={12} sm={8} md={6}>
-              <div>
-                <h2>Welcome... {cust["email"]}</h2>
-              </div>
-            </Grid>
-            <Grid item xs={12} sm={8} md={6}>
-              <div>
-                {/* <p>
-                  {orders}
-                </p> */}
-              </div>
-            </Grid>
+      <div>
+        <h2>Welcome... {cust["email"]}</h2>
+        <h3>Order History</h3>
+        <Grid container> {
+          
+          orders.map((order) => {
+            return (
+              <Grid item key={order.id} xs={10} >
+                <p>"Date" of your order in seconds since the epoch: {order.created}</p>
+                <p>{order.id}</p>
+                <p>{order.order_value.formatted_with_symbol}</p>
+                <table>
+                  <tbody> {
+                    order.order.line_items.map((item) => {
+                      return(
+                        <tr key={item.id}>
+                          <td>{item.product_name}</td>
+                          <td>{item.quantity}</td>
+                          <td>{item.line_total.formatted_with_symbol}</td>
+                        </tr>
+                      );
+                    })
+                    
+                    }
+                  </tbody>
+                  
+                </table>
+                
+              </Grid>
+            )
 
-      </Grid>
+          })
+        }
+        </Grid>
+      </div>
+      // <Grid item container spacing={2}>
+      //       <Grid item xs={12} sm={8} md={6}>
+      //         <div>
+      //           <h2>Welcome... {cust["email"]}</h2>
+      //         </div>
+      //       </Grid>
+      //       <Grid item xs={12} sm={8} md={6}>
+      //         <div>
+      //           {/* <p>
+      //             {orders}
+      //           </p> */}
+      //         </div>
+      //       </Grid>
+
+      // </Grid>
      
       
   );

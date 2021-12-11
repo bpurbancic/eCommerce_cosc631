@@ -10,8 +10,8 @@ function Products () {
     commerce.products.list().then(result => {
         console.log(result);
         setProducts(result.data);
-    }); 
-}, []);  // the empty array [] is 2nd argument to useEffect()
+        }); 
+    }, []);  // the empty array [] is 2nd argument to useEffect()
         // It tells React to only re-execute when it detects a change
 
     return  (
