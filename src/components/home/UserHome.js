@@ -56,11 +56,13 @@ function UserHome({setUserToken, setLoggedIn}) {
         <Grid container> {
           
           orders.map((order) => {
+            // var timestamp = order.created;
+            var orderDate = new Date(order.created * 1000);
             return (
-              <Grid item key={order.id} xs={10} >
-                <p>"Date" of your order in seconds since the epoch: {order.created}</p>
-                <p>{order.id}</p>
-                <p>{order.order_value.formatted_with_symbol}</p>
+              <Grid item key={order.id} xs={12} s={10} md={8}>
+                <p>Order Date: {orderDate.getFullYear()}-{orderDate.getMonth()}-{orderDate.getDate()}</p>
+                <p>Order Total: {order.order_value.formatted_with_symbol}</p>
+                <p>Order Items:</p>
                 <table>
                   <tbody> {
                     order.order.line_items.map((item) => {
@@ -77,6 +79,7 @@ function UserHome({setUserToken, setLoggedIn}) {
                   </tbody>
                   
                 </table>
+                <p></p>
                 
               </Grid>
             )
