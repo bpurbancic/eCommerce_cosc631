@@ -8,7 +8,12 @@ import { commerce } from "../lib/commerce";
 function Navbar({cartItems}) {
     let toDisplay = "";
     if (commerce.customer.isLoggedIn()) {
-        toDisplay = <Button href="/Logout" variant='outlined' color='primary' size='large' > LOGOUT </Button> 
+        toDisplay = <Button href="/Logout" variant='outlined' color='primary' size='large' 
+                    onClick = {(event) => {
+                        commerce.customer.logout();
+                        
+                    }}
+                    > LOGOUT </Button> 
 
     }
     else {
