@@ -7,7 +7,7 @@ import { commerce } from "../lib/commerce";
 function Navbar({cartItems}) {
     let toDisplay = "";
     if (commerce.customer.isLoggedIn()) {
-        toDisplay = <Button href="/Logout" variant='outlined' color='primary' size='large' 
+        toDisplay = <Button href="/Logout" variant='outlined' color='secondary' 
                     onClick = {(event) => {
                         commerce.customer.logout();
                         
@@ -16,21 +16,23 @@ function Navbar({cartItems}) {
 
     }
     else {
-        toDisplay = <Button href="/Login" variant='outlined' color='primary' size='large' > LOGIN </Button> 
+        toDisplay = <Button href="/Login" variant='contained' color='primary' > LOGIN </Button> 
     }
     return (
-        <AppBar position="static" color="secondary">
+        <AppBar position="static" color="primary">
             <Toolbar>
                 <IconButton href="/products"><ToysIcon /></IconButton>
                 <IconButton href="/"><HomeIcon /></IconButton>
                 {/* <Button href="/" color='primary' size='large' > We R Toys </Button> */}
                 {/* <Typography>We R Toys</Typography> */}
                 <IconButton href="/Cart">
-                    <Badge badgeContent={cartItems} color="primary">
+                    <Badge badgeContent={cartItems} color="secondary">
                     <AddShoppingCartIcon />
                     </Badge>
                 </IconButton>
-                <Typography color="secondary">We R Toys</Typography>
+                <Button fullWidth={false} variant='contained' color='primary'
+                href="/UserHome/:userToken">Orders</Button>
+                {/* <Typography color="secondary">  We R Toys  </Typography> */}
                 {toDisplay}
                 
             </Toolbar>

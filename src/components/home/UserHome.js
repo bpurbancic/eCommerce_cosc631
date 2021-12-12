@@ -75,16 +75,12 @@ function UserHome({setUserToken, setLoggedIn}) {
                         </tr>
                       );
                     })
-                    
                     }
                   </tbody>
-                  
                 </table>
                 <p></p>
-                
               </Grid>
             )
-
           })
         }
         </Grid>
