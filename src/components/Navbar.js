@@ -23,8 +23,7 @@ function Navbar({cartItems}) {
             <Toolbar>
                 <IconButton href="/products"><ToysIcon /></IconButton>
                 <IconButton href="/"><HomeIcon /></IconButton>
-                {/* <Button href="/" color='primary' size='large' > We R Toys </Button> */}
-                {/* <Typography>We R Toys</Typography> */}
+               
                 <IconButton href="/Cart">
                     <Badge badgeContent={cartItems} color="secondary">
                     <AddShoppingCartIcon />
@@ -32,7 +31,7 @@ function Navbar({cartItems}) {
                 </IconButton>
                 <Button fullWidth={false} variant='contained' color='primary'
                 href="/UserHome/:userToken">Orders</Button>
-                {/* <Typography color="secondary">  We R Toys  </Typography> */}
+               
                 {toDisplay}
                 
             </Toolbar>
