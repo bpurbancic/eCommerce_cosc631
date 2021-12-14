@@ -39,20 +39,24 @@ function UserHome({setUserToken, setLoggedIn}) {
   const [orders, setOrders] = useState([]);
 
   useEffect (() => {
+    if (commerce.customer.isLoggedIn()) {
     commerce.customer.getOrders(custID).then((result) =>
     {   
         console.log(custID);
         console.log(result);
         setOrders(result.data);
     });
+  }
   },[custID]);
 
   
-    
     return (
       <div>
         <h2>Welcome... {cust["email"]}</h2>
-        <h3>Order History</h3>
+        { orders.length !== 0 && 
+        <h3>Order History</h3>}
+        { orders.length === 0 && 
+        <h3>Please login to view order history</h3>}
         <Grid container> {
           
           orders.map((order) => {
