@@ -49,6 +49,9 @@ function UserHome({setUserToken, setLoggedIn}) {
   }
   },[custID]);
 
+  if (!custID) {
+    return <h2>Please login</h2>
+  }
   
     return (
       <div>
@@ -56,7 +59,7 @@ function UserHome({setUserToken, setLoggedIn}) {
         { orders.length !== 0 && 
         <h3>Order History</h3>}
         { orders.length === 0 && 
-        <h3>Please login to view order history</h3>}
+        <h3>Loading order history</h3>}
         <Grid container> {
           
           orders.map((order) => {
