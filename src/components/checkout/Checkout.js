@@ -21,10 +21,16 @@ function Checkout({cart}) {
         console.log("** checkout:", checkout);
         console.log("** shippingInfo:", shippingInfo);
         console.log("** paymentMethod:", paymentMethod);
+        let nameSplit = shippingInfo["name"].split(' ');
+        let first = nameSplit[0];
+        let last = nameSplit[nameSplit.length-1];
         const orderData = {
             "line_items": checkout.live.line_items,
             "customer": {
-                "email": shippingInfo["email"]
+                "email": shippingInfo["email"],
+                "firstname": first,
+                "lastname": last,
+                "phone": shippingInfo["phone"]
                 },
             "shipping": {
                 "name": shippingInfo["name"],
@@ -45,6 +51,12 @@ function Checkout({cart}) {
             }
         };
         console.log("** orderData:", orderData);
+        // console.log("Customer id: ");
+        // console.log(commerce.customer.id());
+        // commerce.customer.update({
+        //     email: 'b@urbancic.com',
+        //     firstname: 'b urbancic'
+        // },commerce.customer.id()).then((customer) => console.log(customer));
 
         commerce.checkout.capture(checkout.id, orderData).then(
             (response) => {
