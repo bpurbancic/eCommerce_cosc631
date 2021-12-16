@@ -54,7 +54,7 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
     // console.log(" ** shippingMethods:", shippingMethods)
     // console.log(" ** shippingMethodID:", shippingMethod)
 
-    const [name, setName] = useState("");
+    const [name, setName] = useState("Name: First and Last");
     const [nameError, setNameError] = useState(false);
     const [nameHelper, setNameHelper] = useState("");
 
@@ -71,7 +71,7 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
         }
     }
 
-    const [email, setEmail] = useState("");
+    const [email, setEmail] = useState("Email Address");
     const [emailError, setEmailError] = useState(false);
     const [emailHelper, setEmailHelper] = useState("");
 
@@ -156,12 +156,14 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
     const [loggedIn, setLoggedIn] = useState(false);
 
     useEffect(() => {
+        console.log(commerce.customer.isLoggedIn);
         if (commerce.customer.isLoggedIn) {
-            setLoggedIn(true); 
+            
             commerce.customer.about().then((customer) => {
                 setName(customer.firstname + " " + customer.lastname);
                 setEmail(customer.email);
                 setPhone(customer.phone);
+                setLoggedIn(true); 
 
             });
         }
