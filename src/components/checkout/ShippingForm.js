@@ -153,6 +153,20 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
         }
     }
 
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    useEffect(() => {
+        if (commerce.customer.isLoggedIn) {
+            setLoggedIn(true); 
+            commerce.customer.about().then((customer) => {
+                setName(customer.firstname + " " + customer.lastname);
+                setEmail(customer.email);
+                setPhone(customer.phone);
+
+            });
+        }
+    }, [])
+
     // console.log("  ** phone: ", phone)
 
     return (
@@ -160,7 +174,8 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
             <Grid item><h3>Shipping Form</h3></Grid>
             
             <Grid item>
-                <TextField label = "Your full name" onChange = {onNameChange}
+                <TextField label = {name} onChange = {onNameChange}
+                    disabled = {loggedIn}
                     error = {nameError}
                     helperText={nameHelper}
                     onBlur = {onNameUnfocused}
@@ -171,16 +186,18 @@ function ShippingForm({checkoutToken, setShippingInfo}) {
                 </TextField> */}
             </Grid>
             <Grid item>
-                <TextField label = "Email Address" onChange = {onEmailChange}
+                <TextField label = {email} onChange = {onEmailChange}
+                    disabled = {loggedIn}
                     error = {emailError}
                     helperText={emailHelper}
                     onBlur = {onEmailUnfocused}
                 />
             </Grid>
             <Grid item>
-                <ReactPhoneInput component={TextField} onChange={onPhoneChange}
+                <ReactPhoneInput component={TextField} onChange={onPhoneChange} disabled = {loggedIn}
                     inputProps={
                         {
+                            value: phone,
                             error: phoneError,
                             helperText: phoneHelper,
                             onBlur: onPhoneUnfocused

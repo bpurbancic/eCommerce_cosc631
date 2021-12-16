@@ -74,7 +74,7 @@ function Profile() {
         let last = nameSplit[nameSplit.length-1];
 
         commerce.customer.update({
-            email: email,
+            
             firstname: first,
             lastname: last,
             phone: phone
@@ -97,6 +97,7 @@ function Profile() {
             
             <Grid item>
                 <TextField label = {email} onChange = {onEmailChange}
+                    disabled = {true}
                     error = {emailError}
                     helperText={emailHelper}
                     onBlur = {onEmailUnfocused}
