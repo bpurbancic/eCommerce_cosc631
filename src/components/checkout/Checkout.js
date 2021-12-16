@@ -6,21 +6,40 @@ import PaymentForm from "./PaymentForm.js";
 
 
 function Checkout({cart}) {
+
+    const [shippingInfo, setShippingInfo] = useState({});
+    const [paymentMethod, setPaymentMethod] = useState({});
     const [checkout, setCheckout] = useState({});
+    
     useEffect( () => {
         if(cart.id !== undefined) {
             commerce.checkout.generateToken(cart.id, {type: "cart"}).then((checkout) => {
                 setCheckout(checkout);
             }) 
-        }}, [cart.id]);
+    }}, [cart.id]);
 
-    const [shippingInfo, setShippingInfo] = useState({});
-    const [paymentMethod, setPaymentMethod] = useState({});
+    let custID = commerce.customer.id();
+    // console.log("customer ID:", custID);
+    // if (custID) {
+    //     console.log("Logged in!");
+    // }
+
+    
     
     const handlePlaceOrder = (checkout, shippingInfo) => {
         console.log("** checkout:", checkout);
         console.log("** shippingInfo:", shippingInfo);
         console.log("** paymentMethod:", paymentMethod);
+        // How do I show name, phone, email only when logged in?
+        // if (custID) {
+        //     commerce.customer.about().then((customer) => {
+        //         let shippingName = customer.firstname + " " + customer.lastname;
+        //         console.log("shippingName:"+shippingName);
+        //     });
+        // } else {
+        //     let shippingName = shippingInfo["name"];
+        // }
+        // Note: Code below splits the name from shipping info and ignores all but first and last word
         let nameSplit = shippingInfo["name"].split(' ');
         let first = nameSplit[0];
         let last = nameSplit[nameSplit.length-1];
@@ -34,6 +53,7 @@ function Checkout({cart}) {
                 },
             "shipping": {
                 "name": shippingInfo["name"],
+                // "name": shippingName,
                 "street": shippingInfo["street"],
                 "town_city": shippingInfo["city"],
                 "county_state": shippingInfo["region"],
@@ -51,12 +71,7 @@ function Checkout({cart}) {
             }
         };
         console.log("** orderData:", orderData);
-        // console.log("Customer id: ");
-        // console.log(commerce.customer.id());
-        // commerce.customer.update({
-        //     email: 'b@urbancic.com',
-        //     firstname: 'b urbancic'
-        // },commerce.customer.id()).then((customer) => console.log(customer));
+        
 
         commerce.checkout.capture(checkout.id, orderData).then(
             (response) => {

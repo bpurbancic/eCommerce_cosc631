@@ -7,6 +7,7 @@ import NavbarLogout from "./components/NavbarLogout.js"
 import Cart from "./components/cart/Cart.js"
 import Checkout from "./components/checkout/Checkout.js"
 import Login from "./components/login/Login.js"
+import Profile from "./components/profile/Profile.js"
 import {BrowserRouter, Route} from "react-router-dom"
 import { Grid } from "@material-ui/core";
 import { useState, useEffect } from "react";
@@ -87,6 +88,8 @@ function App() {
                     </Route>
                     <Route exact path="/Checkout"><Checkout cart={cart}/>                    
                     </Route>
+                    <Route exact path="/Profile"><Profile/></Route>              
+                    
                 </BrowserRouter>
                 </Grid>
                 <Grid item xs={false} sm={1} md={2}></Grid>  {/* Right-hand gutter */}
